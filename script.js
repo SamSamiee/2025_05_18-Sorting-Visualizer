@@ -57,28 +57,28 @@ generateBtn.addEventListener("click", () => {
 
 const sortBtn = document.getElementById("sort-btn");
 sortBtn.addEventListener("click", () => {
-  highlightCurrentEls(firstContainer, 0)
+	highlightCurrentEls(firstContainer, 0);
 	final(firstArray, firstContainer);
 });
 
 function final(firstArray, firstContainer) {
-  let boolArray = [];
-  firstArray.forEach((item, index) => {
-    let shouldContinue = Boolean(firstArray[index + 1]);
+	let boolArray = [];
+	firstArray.forEach((item, index) => {
+		let shouldContinue = Boolean(firstArray[index + 1]);
 		if (shouldContinue) {
-      highlightCurrentEls(firstContainer, index);
+			highlightCurrentEls(firstContainer, index);
 			if (!isOrdered(item, firstArray[index + 1])) {
-        boolArray.push(false)
-        firstArray = swapElements(firstArray, index);
+				boolArray.push(false);
+				firstArray = swapElements(firstArray, index);
 			}
 			firstContainer = generateContainer();
 			arrayContainer.appendChild(firstContainer);
 			fillArrContainer(firstContainer, firstArray);
 		}
 	});
-  if (boolArray.every(Boolean)) {
-    firstContainer.classList.add("last-one");
-    return firstArray;
-  }
+	if (boolArray.every(Boolean)) {
+		firstContainer.classList.add("last-one");
+		return firstArray;
+	}
 	final(firstArray, firstContainer);
 }
